@@ -6,5 +6,5 @@ script:
  - dotnet build -c Release
  - dotnet pack -c Release -o nupkgs
 after_success:
-- test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && dotnet nuget push -s https://www.nuget.org -k $NUGET_API_KEY StaticFileTransform/nupkgs/StaticFileTransform.*.nupkg
-- test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && dotnet nuget push -s https://www.nuget.org -k $NUGET_API_KEY StaticFileTransform.Abstractions/nupkgs/StaticFileTransform.Abstractions.*.nupkg
+- test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && dotnet nuget push -s https://www.nuget.org -k $NUGET_API_KEY src/StaticFileTransform/nupkgs/StaticFileTransform.*.nupkg
+- test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && dotnet nuget push -s https://www.nuget.org -k $NUGET_API_KEY src/StaticFileTransform.Abstractions/nupkgs/StaticFileTransform.Abstractions.*.nupkg

@@ -7,6 +7,8 @@
     <Authors>Eke Péter</Authors>
     <Description>Allows you to easily execute a function on the contents of static files before sending it to the client.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

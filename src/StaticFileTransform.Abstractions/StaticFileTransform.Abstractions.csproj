@@ -10,6 +10,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/peterekepeter/dotnet-static-file-transform</PackageProjectUrl>
     <PackageTags />
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>
