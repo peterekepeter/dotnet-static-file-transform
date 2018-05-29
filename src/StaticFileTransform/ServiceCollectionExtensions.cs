@@ -7,48 +7,48 @@ namespace StaticFileTransform
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddTextFileTransform(
+        public static IServiceCollection AddStaticFileTransform(
             this IServiceCollection collection,
             Func<String, Boolean> matcher,
             Func<String, String, String> transform,
             Double priority = 10.0)
             => collection.AddSingleton<ITextFileTransform>(services => new CustomTextTransform(matcher, transform, priority));
 
-        public static IServiceCollection AddTextFileTransform(
+        public static IServiceCollection AddStaticFileTransform(
             this IServiceCollection collection,
             Func<String, Boolean> matcher,
             Func<String, String> transform,
             Double priority = 10.0)
-            => collection.AddTextFileTransform(matcher, (filename, content) => transform(content), priority);
+            => collection.AddStaticFileTransform(matcher, (filename, content) => transform(content), priority);
 
-        public static IServiceCollection AddTextFileTransform(
+        public static IServiceCollection AddStaticFileTransform(
             this IServiceCollection collection,
             Regex regexp,
             Func<String, String> transform,
             Double priority = 10.0)
-            => collection.AddTextFileTransform(regexp, (filename, content) => transform(content), priority);
+            => collection.AddStaticFileTransform(regexp, (filename, content) => transform(content), priority);
 
-        public static IServiceCollection AddTextFileTransform(
+        public static IServiceCollection AddStaticFileTransform(
             this IServiceCollection collection,
             Regex regexp,
             Func<String, String, String> transform,
             Double priority = 10.0)
-            => collection.AddTextFileTransform(filename => regexp.IsMatch(filename), transform, priority);
+            => collection.AddStaticFileTransform(filename => regexp.IsMatch(filename), transform, priority);
 
-        public static IServiceCollection AddTextFileTransform(
+        public static IServiceCollection AddStaticFileTransform(
             this IServiceCollection collection,
             String pattern,
             Func<String, String> transform,
             Double priority = 10.0)
-            => collection.AddTextFileTransform(PatternToFunction(pattern), transform, priority);
+            => collection.AddStaticFileTransform(PatternToFunction(pattern), transform, priority);
 
 
-        public static IServiceCollection AddTextFileTransform(
+        public static IServiceCollection AddStaticFileTransform(
             this IServiceCollection collection,
             String pattern,
             Func<String, String, String> transform,
             Double priority = 10.0)
-            => collection.AddTextFileTransform(PatternToFunction(pattern), transform, priority);
+            => collection.AddStaticFileTransform(PatternToFunction(pattern), transform, priority);
 
         private static Func<string, bool> PatternToFunction(string pattern)
         {

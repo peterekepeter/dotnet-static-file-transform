@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
+using StaticFileTransform.Abstractions;
+using StaticFileTransform;
 
 namespace DotnetStaticFileTransformation
 {
@@ -17,9 +15,9 @@ namespace DotnetStaticFileTransformation
         public void ConfigureServices(IServiceCollection services)
         {
             // register text file transforamtions
-            services.AddSingleton<ITextFileTransform, TestTransform>();
+            services.AddSingleton<ITextFileTransform, MyCustomTransform>();
 
-            services.AddTextFileTransform("*.html", content => {
+            services.AddStaticFileTransform("*.html", content => {
                 return content.Replace("<body>", "<body><h1>Transformed</h1>");
             });
         }

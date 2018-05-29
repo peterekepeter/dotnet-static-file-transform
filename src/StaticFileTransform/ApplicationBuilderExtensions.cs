@@ -25,7 +25,7 @@ namespace StaticFileTransform
             var baseFileProvider = options.FileProvider;
 
             // default base file provider
-            if (baseFileProvider == null) baseFileProvider = app.ApplicationServices.GetService<IHostingEnvironment>().ContentRootFileProvider;
+            if (baseFileProvider == null) baseFileProvider = app.ApplicationServices.GetService<IHostingEnvironment>().WebRootFileProvider;
 
             // build new transformation filter
             options.FileProvider = new TransformedFileProvider(baseFileProvider, app.ApplicationServices.GetService<IEnumerable<ITextFileTransform>>());

@@ -40,6 +40,13 @@ namespace StaticFileTransform
             // get real file info
             var file = _baseProvider.GetFileInfo(subpath);
 
+            // transformation not possible in this cases
+            if (file.Exists == false || file.IsDirectory)
+            {
+                // just forward the file
+                return file;
+            }
+
             // early exit
             if (item.FileInfo != null && InfoMatch(item.OriginalFileInfo, file))
             {
@@ -56,12 +63,6 @@ namespace StaticFileTransform
                     return item.FileInfo;
                 }
 
-                // transformation not possible in this cases
-                if (file.Exists == false || file.IsDirectory)
-                {
-                    // just forward the file
-                    return item.FileInfo = item.OriginalFileInfo = file;
-                }
 
                 // build transformations
                 if (item.Transformations == null)

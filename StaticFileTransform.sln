@@ -3,11 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticFileTransform.Web", "src\StaticFileTransform.Web\StaticFileTransform.Web.csproj", "{28A68E60-F6DA-4D7B-96BF-AF15FFB8000A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StaticFileTransform.Web", "src\StaticFileTransform.Web\StaticFileTransform.Web.csproj", "{28A68E60-F6DA-4D7B-96BF-AF15FFB8000A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticFileTransform", "src\StaticFileTransform\StaticFileTransform.csproj", "{2E88E131-A451-405B-BC42-AAC85AAA28F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StaticFileTransform", "src\StaticFileTransform\StaticFileTransform.csproj", "{2E88E131-A451-405B-BC42-AAC85AAA28F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticFileTransform.Abstractions", "src\StaticFileTransform.Abstractions\StaticFileTransform.Abstractions.csproj", "{DFD94742-15AB-43F7-B0C2-A4ADBC13A9EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StaticFileTransform.Abstractions", "src\StaticFileTransform.Abstractions\StaticFileTransform.Abstractions.csproj", "{DFD94742-15AB-43F7-B0C2-A4ADBC13A9EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5B3E6DAA-BA9C-4C63-916F-8D5F47C5EA8A}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
