@@ -20,7 +20,6 @@ implementations for ITextFileTransform. All of these will be applied. A handy
 alternative is to just use the AddStaticFileTransform method which uses lambda
 functions.
 
-	```csharp
 	public void ConfigureServices(IServiceCollection services)
     {
 		// just use a lambda function
@@ -31,13 +30,11 @@ functions.
         // create your own transformations
         services.AddSingleton<ITextFileTransform, MyCustomTransform>();
     }
-	```
 
 You also need to use a "middleware", but there is really no new middleware, 
 just the standard static files with custom options. (keep this in mind if you
 need customization)
 
-	```csharp
 	public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     {
         if (env.IsDevelopment())
@@ -53,7 +50,6 @@ need customization)
             await context.Response.WriteAsync("Hello World!");
         });
     }
-	```
 
 That's all! The library will apply your transformations, it will filter out
 for which file which transformation is required to save performance.
@@ -74,7 +70,6 @@ your transformation.
 You only need to reference StaticFileTransform.Abstractions to use the
 interfaces. This is recommended. See the ITextFileTransform for more details.
 
-	```csharp
 	public class MyCustomTransform : ITextFileTransform
     {
         public String Apply(String filename, String input)
@@ -89,7 +84,6 @@ interfaces. This is recommended. See the ITextFileTransform for more details.
 
         public double Priority => 10.0;
     }
-	```
 
 
 ## Future
