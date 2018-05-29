@@ -1,0 +1,7 @@
+language: csharp
+mono: none
+dotnet: 2.0.0
+script:
+ - dotnet build -c Release
+after_success:
+- test $TRAVIS_BRANCH = "master" && dotnet nuget push -s https://www.nuget.org -k $NUGET_API_KEY **/*.nupkg

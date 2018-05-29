@@ -4,6 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>StaticFileTransform.Abstractions</RootNamespace>
     <AssemblyName>StaticFileTransform.Abstractions</AssemblyName>
+    <Description>The core abstractions for StaticFileTransform. Use this package to implement your own transformations.</Description>
+    <Company />
+    <Authors>Eke Péter</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/peterekepeter/dotnet-static-file-transform</PackageProjectUrl>
+    <PackageTags />
   </PropertyGroup>
 
 </Project>
