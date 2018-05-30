@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using StaticFileTransform.Abstractions;
 using StaticFileTransform;
+using StaticFileTransform.NUglify;
 
 namespace DotnetStaticFileTransformation
 {
@@ -17,9 +18,8 @@ namespace DotnetStaticFileTransformation
             // register text file transforamtions
             services.AddSingleton<ITextFileTransform, MyCustomTransform>();
 
-            services.AddStaticFileTransform("*.html", content => {
-                return content.Replace("<body>", "<body><h1>Transformed</h1>");
-            });
+            services.AddStaticFileTransform("*.html", content => content.Replace("<body>", "<body><h1>Transformed</h1>"));
+            services.AddNUglifyAll();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

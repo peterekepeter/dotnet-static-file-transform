@@ -11,46 +11,46 @@ namespace StaticFileTransform
             this IServiceCollection collection,
             Func<String, Boolean> matcher,
             Func<String, String, String> transform,
-            Double priority = 10.0)
+            Double priority = DefaultPriority.Stitcher)
             => collection.AddSingleton<ITextFileTransform>(services => new CustomTextTransform(matcher, transform, priority));
 
         public static IServiceCollection AddStaticFileTransform(
             this IServiceCollection collection,
             Func<String, Boolean> matcher,
             Func<String, String> transform,
-            Double priority = 10.0)
+            Double priority = DefaultPriority.Stitcher)
             => collection.AddStaticFileTransform(matcher, (filename, content) => transform(content), priority);
 
         public static IServiceCollection AddStaticFileTransform(
             this IServiceCollection collection,
             Regex regexp,
             Func<String, String> transform,
-            Double priority = 10.0)
+            Double priority = DefaultPriority.Stitcher)
             => collection.AddStaticFileTransform(regexp, (filename, content) => transform(content), priority);
 
         public static IServiceCollection AddStaticFileTransform(
             this IServiceCollection collection,
             Regex regexp,
             Func<String, String, String> transform,
-            Double priority = 10.0)
-            => collection.AddStaticFileTransform(filename => regexp.IsMatch(filename), transform, priority);
+            Double priority = DefaultPriority.Stitcher)
+            => collection.AddStaticFileTransform(regexp.IsMatch, transform, priority);
 
         public static IServiceCollection AddStaticFileTransform(
             this IServiceCollection collection,
-            String pattern,
+            String globPattern,
             Func<String, String> transform,
-            Double priority = 10.0)
-            => collection.AddStaticFileTransform(PatternToFunction(pattern), transform, priority);
+            Double priority = DefaultPriority.Stitcher)
+            => collection.AddStaticFileTransform(GlobPatternToFunction(globPattern), transform, priority);
 
 
         public static IServiceCollection AddStaticFileTransform(
             this IServiceCollection collection,
-            String pattern,
+            String globPattern,
             Func<String, String, String> transform,
-            Double priority = 10.0)
-            => collection.AddStaticFileTransform(PatternToFunction(pattern), transform, priority);
+            Double priority = DefaultPriority.Stitcher)
+            => collection.AddStaticFileTransform(GlobPatternToFunction(globPattern), transform, priority);
 
-        private static Func<string, bool> PatternToFunction(string pattern)
+        public static Func<string, bool> GlobPatternToFunction(string pattern)
         {
             if (pattern.Contains("*"))
             {
