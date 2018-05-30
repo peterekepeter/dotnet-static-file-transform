@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\StaticFileTransform.dotless\StaticFileTransform.dotless.csproj" />
     <ProjectReference Include="..\StaticFileTransform.NUglify\StaticFileTransform.NUglify.csproj" />
     <ProjectReference Include="..\StaticFileTransform\StaticFileTransform.csproj" />
   </ItemGroup>

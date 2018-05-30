@@ -1,0 +1,67 @@
+﻿using System;
+
+namespace StaticFileTransform.dotless
+{
+    public class DotlessOptions
+    {
+        /// <summary>
+        /// Keep first comment begining /**
+        /// </summary>
+        public bool KeepFirstSpecialComment { get; set; } = false;
+
+        /// <summary>
+        /// Disable using parameters
+        /// </summary>
+        public bool DisableParameters { get; set; } = false;
+
+        /// <summary>
+        /// Allows you to add a path to every generated import and url in your output css.
+        /// This corresponds to 'rootpath' option of lessc. (default "")
+        /// </summary>
+        public string RootPath { get; set; } = "";
+
+        /// <summary>
+        /// Inlines css files into the less output (default false)
+        /// </summary>
+        public bool InlineCssFiles { get; set; } = false;
+
+        /// <summary>
+        /// Import all files (even if ending in .css) as less files (default false)
+        /// </summary>
+        public bool ImportAllFilesAsLess { get; set; } = false;
+
+        /// <summary>
+        /// Whether to minify the ouput (default false)
+        /// </summary>
+        public bool MinifyOutput { get; set; } = true;
+
+        /// <summary>
+        /// Prints helpful comments in the output while debugging (default false)
+        /// </summary>
+        public bool Debug { get; set; } = false;
+
+        /// <summary>
+        ///  Optimisation int
+        ///  0 - do not chunk up the input
+        ///  > 0 - chunk up output
+        ///  
+        ///  Recommended value - 1 (by default its 1)
+        /// </summary>
+        public int Optimization { get; set; } = 1;
+
+        /// <summary>
+        /// Whether to only evaluate mathematical expressions when they are wrapped in an extra set of parentheses. (default false)
+        /// </summary>
+        public bool StrictMath { get; set; } = false;
+
+        /// <summary>
+        /// StaticFileTransformation priority (DefaultPriority.Transpiler)
+        /// </summary>
+        public double Priority { get; set; } = DefaultPriority.Compiler;
+
+        /// <summary>
+        /// The file matcher to use to determine wether to process this file. By default all files that end with ".less"
+        /// </summary>
+        public Func<string, bool> FileMatcher { get; set; }
+    }
+}

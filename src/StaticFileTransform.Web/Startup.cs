@@ -1,13 +1,13 @@
-﻿
+﻿using DotnetStaticFileTransformation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using StaticFileTransform.Abstractions;
-using StaticFileTransform;
+using StaticFileTransform.dotless;
 using StaticFileTransform.NUglify;
 
-namespace DotnetStaticFileTransformation
+namespace StaticFileTransform.Web
 {
     public class Startup
     {
@@ -17,9 +17,10 @@ namespace DotnetStaticFileTransformation
         {
             // register text file transforamtions
             services.AddSingleton<ITextFileTransform, MyCustomTransform>();
-
+            
             services.AddStaticFileTransform("*.html", content => content.Replace("<body>", "<body><h1>Transformed</h1>"));
             services.AddNUglifyAll();
+            services.AddDotless();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,7 +31,10 @@ namespace DotnetStaticFileTransformation
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseStaticFilesWithTransformations();
+            app.UseStaticFilesWithTransformations(new StaticFileOptions
+            {
+                ServeUnknownFileTypes = true // to serve less files
+            });
 
             app.Run(async (context) =>
             {
