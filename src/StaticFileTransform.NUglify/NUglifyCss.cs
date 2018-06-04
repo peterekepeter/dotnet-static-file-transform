@@ -7,7 +7,7 @@ namespace StaticFileTransform.NUglify
     /// <summary>
     /// Css minification.
     /// </summary>
-    public class NUglifyCss: ITextFileTransform
+    public class NUglifyCss: ITransformationPriority
     {
         private readonly NUglifyCssOptions _options;
         private readonly Func<String, Boolean> _matcher;

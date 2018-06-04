@@ -9,7 +9,7 @@ namespace StaticFileTransform.Internal
     {
         public IFileInfo FileInfo;
         public IFileInfo OriginalFileInfo;
-        public List<ITextFileTransform> Transformations;
+        public List<ITransformationPriority> Transformations;
         public SemaphoreSlim WorkerSemaphore = new SemaphoreSlim(1, 1);
     }
 }

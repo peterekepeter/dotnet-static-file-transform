@@ -2,6 +2,7 @@
 using StaticFileTransform.Abstractions;
 using System;
 using System.Text.RegularExpressions;
+using StaticFileTransform.Implementation;
 
 namespace StaticFileTransform
 {
@@ -11,35 +12,35 @@ namespace StaticFileTransform
             this IServiceCollection collection,
             Func<String, Boolean> matcher,
             Func<String, String, String> transform,
-            Double priority = DefaultPriority.Stitcher)
-            => collection.AddSingleton<ITextFileTransform>(services => new CustomTextTransform(matcher, transform, priority));
+            Double priority = TransformationPriority.Stitcher)
+            => collection.AddSingleton<ITransformationPriority>(services => new TextTransform(matcher, transform, priority));
 
         public static IServiceCollection AddStaticFileTransform(
             this IServiceCollection collection,
             Func<String, Boolean> matcher,
             Func<String, String> transform,
-            Double priority = DefaultPriority.Stitcher)
+            Double priority = TransformationPriority.Stitcher)
             => collection.AddStaticFileTransform(matcher, (filename, content) => transform(content), priority);
 
         public static IServiceCollection AddStaticFileTransform(
             this IServiceCollection collection,
             Regex regexp,
             Func<String, String> transform,
-            Double priority = DefaultPriority.Stitcher)
+            Double priority = TransformationPriority.Stitcher)
             => collection.AddStaticFileTransform(regexp, (filename, content) => transform(content), priority);
 
         public static IServiceCollection AddStaticFileTransform(
             this IServiceCollection collection,
             Regex regexp,
             Func<String, String, String> transform,
-            Double priority = DefaultPriority.Stitcher)
+            Double priority = TransformationPriority.Stitcher)
             => collection.AddStaticFileTransform(regexp.IsMatch, transform, priority);
 
         public static IServiceCollection AddStaticFileTransform(
             this IServiceCollection collection,
             String globPattern,
             Func<String, String> transform,
-            Double priority = DefaultPriority.Stitcher)
+            Double priority = TransformationPriority.Stitcher)
             => collection.AddStaticFileTransform(GlobPatternToFunction(globPattern), transform, priority);
 
 
@@ -47,7 +48,7 @@ namespace StaticFileTransform
             this IServiceCollection collection,
             String globPattern,
             Func<String, String, String> transform,
-            Double priority = DefaultPriority.Stitcher)
+            Double priority = TransformationPriority.Stitcher)
             => collection.AddStaticFileTransform(GlobPatternToFunction(globPattern), transform, priority);
 
         public static Func<string, bool> GlobPatternToFunction(string pattern)

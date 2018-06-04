@@ -12,21 +12,21 @@ namespace StaticFileTransform.NUglify
             this IServiceCollection collection, 
             NUglifyCssOptions options = null) 
             => collection
-            .AddSingleton<ITextFileTransform>(services => new NUglifyCss(options))
+            .AddSingleton<ITransformationPriority>(services => new NUglifyCss(options))
             ;
         
         public static IServiceCollection AddNUglifyHtml(
             this IServiceCollection collection,
             NUglifyHtmlOptions options = null)
             => collection
-            .AddSingleton<ITextFileTransform>(services => new NUglifyHtml(options))
+            .AddSingleton<ITransformationPriority>(services => new NUglifyHtml(options))
             ;
 
         public static IServiceCollection AddNUglifyJs(
             this IServiceCollection collection,
             NUglifyJsOptions options = null)
             => collection
-            .AddSingleton<ITextFileTransform>(services => new NUglifyJs(options))
+            .AddSingleton<ITransformationPriority>(services => new NUglifyJs(options))
             ;
 
         public static IServiceCollection AddNUglifyAll(

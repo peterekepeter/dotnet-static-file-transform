@@ -3,7 +3,7 @@ using StaticFileTransform.Abstractions;
 
 namespace DotnetStaticFileTransformation
 {
-    public class MyCustomTransform : ITextFileTransform
+    public class MyCustomTransform : ITransformationPriority
     {
         public String Apply(String filename, String input)
         {

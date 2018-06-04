@@ -8,7 +8,7 @@ namespace StaticFileTransform.NUglify
     /// <summary>
     /// HTML minification.
     /// </summary>
-    public class NUglifyHtml: ITextFileTransform
+    public class NUglifyHtml: ITransformationPriority
     {
         private readonly NUglifyHtmlOptions _options;
         private readonly Func<String, Boolean> _matcher;

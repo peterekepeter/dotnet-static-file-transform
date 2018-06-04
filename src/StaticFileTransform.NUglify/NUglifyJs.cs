@@ -7,7 +7,7 @@ namespace StaticFileTransform.NUglify
     /// <summary>
     /// Javascript minification.
     /// </summary>
-    public class NUglifyJs : ITextFileTransform
+    public class NUglifyJs : ITransformationPriority
     {
         private readonly NUglifyJsOptions _options;
         private readonly Func<String, Boolean> _matcher;

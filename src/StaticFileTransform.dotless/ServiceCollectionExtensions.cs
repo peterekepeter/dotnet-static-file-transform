@@ -9,6 +9,9 @@ namespace StaticFileTransform.dotless
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddDotless(this IServiceCollection collection, DotlessOptions options = null) 
-            => collection.AddSingleton<ITextFileTransform>(new Dotless(options));
+            => collection.AddSingleton<ITransformationPriority>(services => new Dotless(options));
+
+        public static IServiceCollection AddDotless(this IServiceCollection collection, Func<IServiceProvider, DotlessOptions> optionsBuilder)
+            => collection.AddSingleton<ITransformationPriority>(services => new Dotless(optionsBuilder(services)));
     }
 }

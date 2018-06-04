@@ -15,7 +15,7 @@ namespace StaticFileTransform.dotless
         public bool DisableParameters { get; set; } = false;
 
         /// <summary>
-        /// Allows you to add a path to every generated import and url in your output css.
+        /// You need to set this to support imports.
         /// This corresponds to 'rootpath' option of lessc. (default "")
         /// </summary>
         public string RootPath { get; set; } = "";
@@ -57,7 +57,7 @@ namespace StaticFileTransform.dotless
         /// <summary>
         /// StaticFileTransformation priority (DefaultPriority.Transpiler)
         /// </summary>
-        public double Priority { get; set; } = DefaultPriority.Compiler;
+        public double Priority { get; set; } = TransformationPriority.Compiler;
 
         /// <summary>
         /// The file matcher to use to determine wether to process this file. By default all files that end with ".less"

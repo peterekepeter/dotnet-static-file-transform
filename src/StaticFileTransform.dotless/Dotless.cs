@@ -7,7 +7,7 @@ using StaticFileTransform.Abstractions;
 
 namespace StaticFileTransform.dotless
 {
-    public class Dotless : ITextFileTransform
+    public class Dotless : ITransformationPriority
     {
         private readonly DotlessConfiguration _config;
         private readonly double _priority;
@@ -22,6 +22,11 @@ namespace StaticFileTransform.dotless
             _config = DotlessConfiguration.GetDefault();
             _config.KeepFirstSpecialComment = options.KeepFirstSpecialComment;
             _config.RootPath = options.RootPath;
+            if (!String.IsNullOrWhiteSpace(_config.RootPath) && !_config.RootPath.EndsWith("/"))
+            {
+                _config.RootPath += "/";
+            }
+            _config. = 
             _config.InlineCssFiles = options.InlineCssFiles;
             _config.ImportAllFilesAsLess = options.ImportAllFilesAsLess;
             _config.MinifyOutput = options.MinifyOutput;

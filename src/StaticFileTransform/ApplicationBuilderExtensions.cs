@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using StaticFileTransform.Abstractions;
+using StaticFileTransform.Implementation;
 
 namespace StaticFileTransform
 {
@@ -28,7 +29,7 @@ namespace StaticFileTransform
             if (baseFileProvider == null) baseFileProvider = app.ApplicationServices.GetService<IHostingEnvironment>().WebRootFileProvider;
 
             // build new transformation filter
-            options.FileProvider = new TransformedFileProvider(baseFileProvider, app.ApplicationServices.GetService<IEnumerable<ITextFileTransform>>());
+            options.FileProvider = new TransformedFileProvider(baseFileProvider, app.ApplicationServices.GetService<IEnumerable<ITransformationPriority>>());
 
             // add static files module with the added plugin
             app.UseStaticFiles(options);

@@ -16,7 +16,7 @@ namespace StaticFileTransform.NUglify
         /// <summary>
         /// Transformations are sorted by priority.
         /// </summary>
-        public Double Priority { get; set; } = StaticFileTransform.DefaultPriority.Minifier;
+        public Double Priority { get; set; } = StaticFileTransform.TransformationPriority.Minifier;
 
         /// <summary>
         /// Determines which files to transform. By default all files that end with ".js"

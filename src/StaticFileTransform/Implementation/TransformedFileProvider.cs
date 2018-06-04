@@ -1,28 +1,27 @@
-﻿using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Primitives;
-using StaticFileTransform.Abstractions;
-using StaticFileTransform.Internal;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Primitives;
+using StaticFileTransform.Abstractions;
+using StaticFileTransform.Internal;
 
-namespace StaticFileTransform
+namespace StaticFileTransform.Implementation
 {
     public class TransformedFileProvider : IFileProvider
     {
         // From Constructor
 
         private IFileProvider _baseProvider;
-        private List<ITextFileTransform> _transformations;
+        private List<ITransformationPriority> _transformations;
 
         // Internal structure
 
         private ConcurrentDictionary<String, TransformedFileInfo> _memoized = new ConcurrentDictionary<string, TransformedFileInfo>();
 
-        public TransformedFileProvider(IFileProvider fileProvider, IEnumerable<ITextFileTransform> transformations)
+        public TransformedFileProvider(IFileProvider fileProvider, IEnumerable<ITransformationPriority> transformations)
         {
             this._baseProvider = fileProvider;
             this._transformations = transformations.ToList();
