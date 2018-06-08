@@ -2,7 +2,7 @@
 
 namespace StaticFileTransform.Abstractions
 {
-    public interface IStaticFileTransform : ITransformationPriority
+    public interface IStaticFileTransform
     {
         /// <summary>
         /// Applies the tranformation to the file.
