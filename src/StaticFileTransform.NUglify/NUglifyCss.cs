@@ -7,17 +7,14 @@ namespace StaticFileTransform.NUglify
     /// <summary>
     /// Css minification.
     /// </summary>
-    public class NUglifyCss: ITransformationPriority
+    public class NUglifyCss
     {
         private readonly NUglifyCssOptions _options;
-        private readonly Func<String, Boolean> _matcher;
 
         public NUglifyCss(NUglifyCssOptions options)
         {
             if (options == null) options = new NUglifyCssOptions();
             _options = options;
-            if (_options.FileMatcher != null) _matcher = _options.FileMatcher;
-            else _matcher = filename => filename.EndsWith(".css");
         }
 
         /// <summary>
@@ -38,8 +35,5 @@ namespace StaticFileTransform.NUglify
             return result.Code;
         }
 
-        public bool Matches(string filename) => _matcher(filename);
-
-        public double Priority => _options.Priority;
     }
 }

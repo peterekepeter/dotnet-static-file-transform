@@ -8,26 +8,21 @@ namespace StaticFileTransform.NUglify
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddNUglifyCss(
-            this IServiceCollection collection, 
-            NUglifyCssOptions options = null) 
-            => collection
-            .AddSingleton<ITransformationPriority>(services => new NUglifyCss(options))
-            ;
+        public static IServiceCollection AddNUglifyCss(this IServiceCollection collection, NUglifyCssOptions options = null) 
+            => collection.AddSingleton<IStaticFileTransform>(services 
+                => new StaticFileTransformBuilder().NUglifyCss(options).Build());
         
         public static IServiceCollection AddNUglifyHtml(
             this IServiceCollection collection,
             NUglifyHtmlOptions options = null)
-            => collection
-            .AddSingleton<ITransformationPriority>(services => new NUglifyHtml(options))
-            ;
+            => collection.AddSingleton<IStaticFileTransform>(services
+                => new StaticFileTransformBuilder().NUglifyHtml(options).Build());
 
         public static IServiceCollection AddNUglifyJs(
             this IServiceCollection collection,
             NUglifyJsOptions options = null)
-            => collection
-            .AddSingleton<ITransformationPriority>(services => new NUglifyJs(options))
-            ;
+            => collection.AddSingleton<IStaticFileTransform>(services
+                => new StaticFileTransformBuilder().NUglifyJs(options).Build());
 
         public static IServiceCollection AddNUglifyAll(
             this IServiceCollection collection,
