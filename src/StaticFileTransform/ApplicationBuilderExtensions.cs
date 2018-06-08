@@ -29,7 +29,7 @@ namespace StaticFileTransform
             if (baseFileProvider == null) baseFileProvider = app.ApplicationServices.GetService<IHostingEnvironment>().WebRootFileProvider;
 
             // build new transformation filter
-            options.FileProvider = new TransformedFileProvider(baseFileProvider, app.ApplicationServices.GetService<IEnumerable<ITransformationPriority>>());
+            options.FileProvider = new TransformedFileProvider(baseFileProvider, app.ApplicationServices.GetService<IEnumerable<IStaticFileTransform>>());
 
             // add static files module with the added plugin
             app.UseStaticFiles(options);

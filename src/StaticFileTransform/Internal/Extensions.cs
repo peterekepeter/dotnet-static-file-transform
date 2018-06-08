@@ -6,9 +6,9 @@ namespace StaticFileTransform.Internal
 {
     public static class Extensions
     {
-        public static List<ITransformationPriority> MatchingTransformations(this IEnumerable<ITransformationPriority> transforms, string subpath)
+        public static List<IStaticFileTransform> MatchingTransformations(this IEnumerable<IStaticFileTransform> transforms, string subpath)
         {
-            var list = new List<ITransformationPriority>();
+            var list = new List<IStaticFileTransform>();
             foreach (var transform in transforms)
             {
                 if (transform.Matches(subpath))
@@ -19,15 +19,6 @@ namespace StaticFileTransform.Internal
             }
             return list;
         }
-
-        public static String ApplyAll(this IEnumerable<ITransformationPriority> transforms, string subpath, string content)
-        {
-            var list = new List<ITransformationPriority>();
-            foreach (var transform in transforms)
-            {
-                content = transform.Apply(subpath, content);
-            }
-            return content;
-        }
+        
     }
 }

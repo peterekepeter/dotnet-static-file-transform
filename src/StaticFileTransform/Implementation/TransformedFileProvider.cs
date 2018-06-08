@@ -15,13 +15,13 @@ namespace StaticFileTransform.Implementation
         // From Constructor
 
         private IFileProvider _baseProvider;
-        private List<ITransformationPriority> _transformations;
+        private List<IStaticFileTransform> _transformations;
 
         // Internal structure
 
         private ConcurrentDictionary<String, TransformedFileInfo> _memoized = new ConcurrentDictionary<string, TransformedFileInfo>();
 
-        public TransformedFileProvider(IFileProvider fileProvider, IEnumerable<ITransformationPriority> transformations)
+        public TransformedFileProvider(IFileProvider fileProvider, IEnumerable<IStaticFileTransform> transformations)
         {
             this._baseProvider = fileProvider;
             this._transformations = transformations.ToList();
