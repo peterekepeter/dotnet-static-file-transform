@@ -54,14 +54,5 @@ namespace StaticFileTransform.dotless
         /// </summary>
         public bool StrictMath { get; set; } = false;
 
-        /// <summary>
-        /// StaticFileTransformation priority (DefaultPriority.Transpiler)
-        /// </summary>
-        public double Priority { get; set; } = TransformationPriority.Compiler;
-
-        /// <summary>
-        /// The file matcher to use to determine wether to process this file. By default all files that end with ".less"
-        /// </summary>
-        public Func<string, bool> FileMatcher { get; set; }
     }
 }
