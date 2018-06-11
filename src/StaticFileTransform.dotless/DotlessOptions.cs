@@ -54,5 +54,17 @@ namespace StaticFileTransform.dotless
         /// </summary>
         public bool StrictMath { get; set; } = false;
 
+        /// <summary>
+        /// Uses this pattern to match compilation target. 
+        /// Default is "*.css" and should only be changed under special circumstances.
+        /// </summary>
+        public string CssMatchPattern = "*.css";
+
+        /// <summary>
+        /// Uses this pattern to match compilation source.
+        /// Default is "*.less" and should only be changed under special circumstances.
+        /// </summary>
+        public string LessSourceFilePattern = "*.less";
+
     }
 }

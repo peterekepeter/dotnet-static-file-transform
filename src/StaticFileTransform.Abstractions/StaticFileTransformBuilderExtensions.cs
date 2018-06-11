@@ -20,11 +20,10 @@ namespace StaticFileTransform.Abstractions
 
         public static Builder UseFallbackPattern(this Builder builder, String matchPattern, String fallbackPattern)
         {
-            var regex = Helpers.PatternToRegex(matchPattern);
-            var stitch = Helpers.PatternToStitch(fallbackPattern);
+            var nameTransform = new FilenameTransform(matchPattern, fallbackPattern);
             return builder
-                .Use((filename, provider) => provider.GetContent(filename) ?? provider.GetContent(regex.Replace(filename, stitch)))
-                .IfMatches(regex)
+                .Use((filename, provider) => provider.GetContent(filename) ?? provider.GetContent(nameTransform.TrasformFilename(filename)))
+                .IfMatches(nameTransform.Matches)
                 .WithRouterPriority();
         }
         

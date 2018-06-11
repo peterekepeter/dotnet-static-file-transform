@@ -10,7 +10,7 @@ namespace StaticFileTransform.dotless
         public static StaticFileTransformBuilder UseDotless(this StaticFileTransformBuilder builder, DotlessOptions options)
         {
             var dotless = new Dotless(options);
-            return builder;
+            return builder.Use(dotless.Apply).IfMatches(dotless.Matches).WithCompilerPriority();
         }
     }
 }
