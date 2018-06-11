@@ -16,9 +16,11 @@ namespace StaticFileTransform.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // register text file transforamtions
-            services.AddSingleton<ITransformationPriority, MyCustomTransform>();
-            
-            services.AddStaticFileTransform("*.html", content => content.Replace("<body>", "<body><h1>Transformed</h1>"));
+            services.AddSingleton<IStaticFileTransform, MyCustomTransform>();
+
+            services.AddStaticFileTransform(builder => builder
+                .Use(content => content.Replace("<body>", "<body><h1>Transformed</h1>"))
+                .IfMatches("*.html").WithStitcherPriority());
             services.AddNUglifyAll();
 
             services.AddDotless(provider => new DotlessOptions

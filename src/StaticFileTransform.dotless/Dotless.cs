@@ -54,13 +54,15 @@ namespace StaticFileTransform.dotless
             var importer = new Importer(fileReader, 
                 _config.DisableUrlRewriting, _config.RootPath, _config.InlineCssFiles, _config.ImportAllFilesAsLess);
             var parser = new Parser(_config, _stylizer, importer);
+            fileReader.CurrentLocationGetter = () => parser.FileName;
             var logger = new LoggerAdapter();
             var engine = new LessEngine(parser, logger, _config);
-            engine.TransformToCss(lessContent, filename);
+            var css = engine.TransformToCss(lessContent, filename);
             if (logger.ErrorCount > 0)
                 throw new InvalidOperationException(
                     $"Found {logger.ErrorCount} errors while compiling Less:\n{logger.CompilationLog}");
-            return Less.Parse(lessContent, _config);
+            Less.Parse("less");
+            return css;
         }
 
         public bool Matches(string filename)

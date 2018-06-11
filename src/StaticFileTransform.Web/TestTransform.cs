@@ -1,13 +1,13 @@
 ﻿using System;
 using StaticFileTransform.Abstractions;
 
-namespace DotnetStaticFileTransformation
+namespace StaticFileTransform.Web
 {
-    public class MyCustomTransform : ITransformationPriority
+    public class MyCustomTransform : IStaticFileTransform
     {
-        public String Apply(String filename, String input)
+        public String Apply(String filename, IContentProvider provider)
         {
-            return $"<!-- Copyright SomeCompany {DateTime.Now} -->\n" + input;
+            return $"<!-- Copyright SomeCompany {DateTime.Now} -->\n" + provider.GetContent(filename);
         }
 
         public bool Matches(string filename)
@@ -15,6 +15,6 @@ namespace DotnetStaticFileTransformation
             return filename.EndsWith(".html");
         }
 
-        public double Priority => 10.0;
+        public int Priority => 50;
     }
 }

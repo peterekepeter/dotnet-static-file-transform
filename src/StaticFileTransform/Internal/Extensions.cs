@@ -15,7 +15,7 @@ namespace StaticFileTransform.Internal
                 {
                     list.Add(transform);
                 }
-                list.Sort((a, b) => b.Priority.CompareTo(a.Priority));
+                list.Sort((a, b) => a.Priority.CompareTo(b.Priority));
             }
             return list;
         }
