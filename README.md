@@ -7,8 +7,6 @@ served files. This is done by hooking into the StaticFileMiddleware, so we're
 using standard components all the way. There are even neat helper functions for
 usage and registration.
 
-# Readme is outdated
-
 ## How to use?
 
 You first need to install the base nuget package called StaticFileTransform.
