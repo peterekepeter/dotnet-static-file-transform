@@ -6,28 +6,19 @@ namespace StaticFileTransform.Internal
 {
     public static class Extensions
     {
-        public static List<ITextFileTransform> MatchingTransformations(this IEnumerable<ITextFileTransform> transforms, string subpath)
+        public static List<IStaticFileTransform> MatchingTransformations(this IEnumerable<IStaticFileTransform> transforms, string subpath)
         {
-            var list = new List<ITextFileTransform>();
+            var list = new List<IStaticFileTransform>();
             foreach (var transform in transforms)
             {
                 if (transform.Matches(subpath))
                 {
                     list.Add(transform);
                 }
-                list.Sort((a, b) => b.Priority.CompareTo(a.Priority));
+                list.Sort((a, b) => a.Priority.CompareTo(b.Priority));
             }
             return list;
         }
-
-        public static String ApplyAll(this IEnumerable<ITextFileTransform> transforms, string subpath, string content)
-        {
-            var list = new List<ITextFileTransform>();
-            foreach (var transform in transforms)
-            {
-                content = transform.Apply(subpath, content);
-            }
-            return content;
-        }
+        
     }
 }

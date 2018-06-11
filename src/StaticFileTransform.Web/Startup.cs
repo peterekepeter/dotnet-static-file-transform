@@ -16,11 +16,17 @@ namespace StaticFileTransform.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // register text file transforamtions
-            services.AddSingleton<ITextFileTransform, MyCustomTransform>();
-            
-            services.AddStaticFileTransform("*.html", content => content.Replace("<body>", "<body><h1>Transformed</h1>"));
+            services.AddSingleton<IStaticFileTransform, MyCustomTransform>();
+
+            services.AddStaticFileTransform(builder => builder
+                .Use(content => content.Replace("<body>", "<body><h1>Transformed</h1>"))
+                .IfMatches("*.html").WithStitcherPriority());
             services.AddNUglifyAll();
-            services.AddDotless();
+
+            services.AddDotless(provider => new DotlessOptions
+            {
+                RootPath = provider.GetService<IHostingEnvironment>().WebRootPath
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

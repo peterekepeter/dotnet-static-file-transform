@@ -7,14 +7,16 @@ namespace StaticFileTransform.Internal
 {
     internal class FileWithMemoizedTransform : IFileInfo
     {
+        private static readonly byte[] NoData = new byte[0];
+
         public FileWithMemoizedTransform(IFileInfo original, String content)
         {
-            Exists = original.Exists;
+            Exists = content != null;
             PhysicalPath = original.PhysicalPath;
             Name = original.Name;
             LastModified = original.LastModified;
-            IsDirectory = original.IsDirectory;
-            _data = Encoding.UTF8.GetBytes(content);
+            IsDirectory = content == null && original.IsDirectory;
+            _data = content == null ? NoData : Encoding.UTF8.GetBytes(content);
             Length = _data.Length;
         }
 

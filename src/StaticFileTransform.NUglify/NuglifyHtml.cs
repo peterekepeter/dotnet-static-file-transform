@@ -8,17 +8,14 @@ namespace StaticFileTransform.NUglify
     /// <summary>
     /// HTML minification.
     /// </summary>
-    public class NUglifyHtml: ITextFileTransform
+    public class NUglifyHtml
     {
         private readonly NUglifyHtmlOptions _options;
-        private readonly Func<String, Boolean> _matcher;
 
         public NUglifyHtml(NUglifyHtmlOptions options)
         {
             if (options == null) options = new NUglifyHtmlOptions();
             _options = options;
-            if (_options.FileMatcher != null) _matcher = _options.FileMatcher;
-            else _matcher = filename => filename.EndsWith(".html") || filename.EndsWith(".htm");
         }
 
         /// <summary>
@@ -38,9 +35,6 @@ namespace StaticFileTransform.NUglify
             }
             return result.Code;
         }
-
-        public bool Matches(string filename) => _matcher(filename);
-
-        public double Priority => _options.Priority;
+        
     }
 }
