@@ -22,5 +22,6 @@ namespace StaticFileTransform
 
         public static IServiceCollection AddStaticFileTransform(this IServiceCollection collection, Func<IServiceProvider, IStaticFileTransform> factory) 
             => collection.AddSingleton<IStaticFileTransform>(factory);
+
     }
 }

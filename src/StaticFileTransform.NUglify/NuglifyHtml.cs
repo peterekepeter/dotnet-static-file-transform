@@ -29,7 +29,7 @@ namespace StaticFileTransform.NUglify
             var result = Uglify.Html(input, _options.HtmlSettings, filename);
             if (result.HasErrors)
             {
-                var exception = new ArgumentException($"UglifyJavaScript failed {filename}");
+                var exception = new ArgumentException($"UglifyHtml failed {filename}");
                 exception.Data.Add("Result", result);
                 throw exception;
             }

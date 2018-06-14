@@ -2,13 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.0.0</Version>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <Version>2.2.0</Version>
+    <AssemblyVersion>2.2.0.0</AssemblyVersion>
     <Authors>Eke Péter</Authors>
     <Description>NUglify plugin for StaticFileTransform. Allows you to minify HTML, CSS and JS direcly from a running dotnet core web application.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/peterekepeter/dotnet-static-file-transform</PackageProjectUrl>
     <RepositoryUrl>https://github.com/peterekepeter/dotnet-static-file-transform</RepositoryUrl>
+    <FileVersion>2.2.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

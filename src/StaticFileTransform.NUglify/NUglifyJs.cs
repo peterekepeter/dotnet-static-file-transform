@@ -1,5 +1,6 @@
 ﻿using System;
 using NUglify;
+using NUglify.JavaScript;
 using StaticFileTransform.Abstractions;
 
 namespace StaticFileTransform.NUglify
@@ -9,15 +10,12 @@ namespace StaticFileTransform.NUglify
     /// </summary>
     public class NUglifyJs
     {
-        private readonly NUglifyJsOptions _options;
-        private readonly Func<String, Boolean> _matcher;
+        private CodeSettings _codeSettings;
 
         public NUglifyJs(NUglifyJsOptions options)
         {
             if (options == null) options = new NUglifyJsOptions();
-            _options = options;
-            if (_options.FileMatcher != null) _matcher = _options.FileMatcher;
-            else _matcher = filename => filename.EndsWith(".js");
+            _codeSettings = options.CodeSettings;
         }
 
         /// <summary>
@@ -28,7 +26,7 @@ namespace StaticFileTransform.NUglify
         /// <returns></returns>
         public string Apply(string filename, string input) 
         {
-            var result = Uglify.Js(input, filename, _options.CodeSettings);
+            var result = Uglify.Js(input, filename, _codeSettings);
             if (result.HasErrors)
             {
                 var exception = new ArgumentException($"UglifyJavaScript failed {filename}");
@@ -37,9 +35,5 @@ namespace StaticFileTransform.NUglify
             }
             return result.Code;
         }
-
-        public bool Matches(string filename) => _matcher(filename);
-
-        public double Priority => _options.Priority;
     }
 }

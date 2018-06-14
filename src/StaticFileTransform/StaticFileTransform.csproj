@@ -7,9 +7,9 @@
     <Authors>Eke Péter</Authors>
     <Description>Allows you to easily execute a function on the contents of static files before sending it to the client.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.0</Version>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <Version>2.2.0</Version>
+    <AssemblyVersion>2.2.0.0</AssemblyVersion>
+    <FileVersion>2.2.0.0</FileVersion>
     <PackageProjectUrl>https://github.com/peterekepeter/dotnet-static-file-transform</PackageProjectUrl>
   </PropertyGroup>
 

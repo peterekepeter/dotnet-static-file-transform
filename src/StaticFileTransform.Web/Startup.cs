@@ -18,15 +18,16 @@ namespace StaticFileTransform.Web
             // register text file transforamtions
             services.AddSingleton<IStaticFileTransform, MyCustomTransform>();
 
+            // add inline custom transform
             services.AddStaticFileTransform(builder => builder
                 .Use(content => content.Replace("<body>", "<body><h1>Transformed</h1>"))
                 .IfMatches("*.html").WithStitcherPriority());
+
+            // add Nuglify support!
             services.AddNUglifyAll();
 
-            services.AddDotless(provider => new DotlessOptions
-            {
-                RootPath = provider.GetService<IHostingEnvironment>().WebRootPath
-            });
+            // add dotless support!
+            services.AddDotless();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

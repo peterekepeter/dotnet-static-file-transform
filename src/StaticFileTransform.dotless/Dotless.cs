@@ -39,7 +39,7 @@ namespace StaticFileTransform.dotless
             _cssToLess = new FilenameTransform(options.CssMatchPattern, options.LessSourceFilePattern);
             _stylizer = new PlainStylizer();
         }
-
+        
         public string Apply(string filename, IContentProvider provider)
         {
             // transformation is only applied of requested css file is not found
@@ -61,7 +61,6 @@ namespace StaticFileTransform.dotless
             if (logger.ErrorCount > 0)
                 throw new InvalidOperationException(
                     $"Found {logger.ErrorCount} errors while compiling Less:\n{logger.CompilationLog}");
-            Less.Parse("less");
             return css;
         }
 

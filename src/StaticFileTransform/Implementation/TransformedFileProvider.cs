@@ -103,7 +103,7 @@ namespace StaticFileTransform.Implementation
                     else
                     {
                         info.Content = ReadOriginalFileContent(info.Original);
-                        info.Transformed = new FileWithMemoizedTransform(info.Original, info.Content);
+                        info.Transformed = info.Original;
                     }
                     return; // early exit
                 }
