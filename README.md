@@ -7,6 +7,11 @@ served files. This is done by hooking into the StaticFileMiddleware, so we're
 using standard components all the way. There are even neat helper functions for
 usage and registration.
 
+## Avaliable integrations
+
+ - dotless
+ - NUglify
+
 ## How to use?
 
 You first need to install the base nuget package called StaticFileTransform.
@@ -109,7 +114,3 @@ will be able to make use of the transformations.
 
 You only need to reference StaticFileTransform.Abstractions to use the
 interfaces. This is the recommended way of adding a new transformation.
-
-## Future
-
-Integrate some actually useful transformations.
