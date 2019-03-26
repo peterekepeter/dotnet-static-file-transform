@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\StaticFileTransform.Abstractions\StaticFileTransform.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\StaticFileTransform.Jsx\StaticFileTransform.Jsx.csproj" />
   </ItemGroup>
 
 </Project>
